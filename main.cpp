@@ -1,27 +1,15 @@
 #include <iostream>
 
 int greatestCommonFactor(int x, int y) {
-  // Gets the highest and lowest of the two numbers
-  int max = std::max(x, y), min = std::min(x, y);
+  // Using Euclidean Algorithm
+  while (y) {
+    int temp = x;
 
-  // If the higher is divisible by the lower, return
-  // the lower as it is the greatest common divisor
-  if (!(max % min))
-    return min;
-
-  // Brute force checking
-  int gcf = 1;
-
-  // Iterate through the numbers from 1 to the lower number
-  for (int i = gcf; i <= min; i++) {
-
-    // If the higher and lower numbers are divisible by the current number (i),
-    // set the new greatest common factor to the current number (i)
-    if (!(max % i) && !(min % i))
-      gcf = i;
+    x = y;
+    y = temp % y;
   }
 
-  return gcf;
+  return x;
 }
 
 int leastCommonMultiple(int x, int y) {
